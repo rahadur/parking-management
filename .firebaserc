@@ -1,0 +1,14 @@
+{
+  "targets": {
+    "selise-parking-management": {
+      "hosting": {
+        "pms": [
+          "selise-parking-management"
+        ]
+      }
+    }
+  },
+  "projects": {
+    "default": "selise-parking-management"
+  }
+}

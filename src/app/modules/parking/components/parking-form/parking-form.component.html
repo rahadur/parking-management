@@ -1,0 +1,144 @@
+<form [formGroup]="parkingForm" (ngSubmit)="saveParking()">
+  <div class="row">
+    <div class="col-6">
+      <div class="mt-3">
+        <label class="form-label" for="vehicleLicenseNo">Vehicle License Number</label>
+        <input type="text" formControlName="vehicleLicenseNo" class="form-control" required id="vehicleLicenseNo">
+        <ng-container *ngIf="formControl('vehicleLicenseNo').touched && formControl('vehicleLicenseNo').invalid">
+          <div class="text-danger">
+            Vehicle License Number Required
+          </div>
+        </ng-container>
+      </div>
+
+      <div class="mt-3">
+        <label for="vehicleLicenseNo">Vehicle Type</label>
+        <select class="form-select" (ngModelChange)="selectVehicleType($event)"
+                formControlName="vehicleType" aria-label="Parking vehicle type" id="vehicleType">
+          <option value="" selected>Select Vehicle type</option>
+          <option value="car">Car</option>
+          <option value="microbus">Microbus</option>
+          <option value="truck">Truck</option>
+        </select>
+        <ng-container *ngIf="formControl('vehicleType').touched && formControl('vehicleType').invalid">
+          <div class="text-danger">
+            Vehicle Type Required
+          </div>
+        </ng-container>
+      </div>
+
+      <div class="mt-3">
+        <label class="form-label" for="ownerName">Owner Name</label>
+        <input type="text" formControlName="ownerName" class="form-control"  id="ownerName">
+        <ng-container *ngIf="formControl('ownerName').touched && formControl('ownerName').invalid">
+          <div class="text-danger">
+            Owner Name Required
+          </div>
+        </ng-container>
+      </div>
+
+      <div class="mt-3">
+        <label class="form-label" for="ownerPhone">Owner Phone</label>
+        <input type="text" formControlName="ownerPhone" class="form-control" id="ownerPhone">
+        <ng-container *ngIf="formControl('ownerPhone').touched && formControl('ownerPhone').invalid">
+          <div class="text-danger">
+            Owner Phone Required
+          </div>
+        </ng-container>
+      </div>
+
+      <div class="mt-3">
+        <label class="form-label" for="vehicleLicenseNo">Status</label>
+        <select class="form-select" formControlName="status" aria-label="Default select example">
+          <option value="" selected>Select status</option>
+          <option value="in">In</option>
+          <option value="out">Out</option>
+        </select>
+        <ng-container *ngIf="formControl('status').touched && formControl('status').invalid">
+          <div class="text-danger">
+            Parking Status Required
+          </div>
+        </ng-container>
+      </div>
+
+
+
+      <div class="mt-3">
+        <label class="form-label" for="entryDateTime">Entry Date Time</label>
+        <input type="datetime-local" formControlName="entryDateTime" class="form-control" id="entryDateTime">
+        <ng-container *ngIf="formControl('entryDateTime').touched && formControl('entryDateTime').invalid">
+          <div class="text-danger">
+            Entry Date Time Required
+          </div>
+        </ng-container>
+      </div>
+
+      <div class="mt-3">
+        <label class="form-label" for="exitDateTime">Exit Date Time</label>
+        <input type="datetime-local" formControlName="exitDateTime" class="form-control" id="exitDateTime">
+        <ng-container *ngIf="formControl('exitDateTime').touched && formControl('exitDateTime').invalid">
+          <div class="text-danger">
+            Exit Date Time Required
+          </div>
+        </ng-container>
+      </div>
+
+      <div class="mt-3">
+        <label class="form-label" for="parkingCharge">Parking Charge</label>
+        <input type="number" formControlName="parkingCharge" class="form-control" id="parkingCharge">
+        <ng-container *ngIf="formControl('parkingCharge').touched && formControl('parkingCharge').invalid">
+          <div class="text-danger">
+            Parking Charge Required
+          </div>
+        </ng-container>
+      </div>
+
+    </div>
+
+
+
+    <div class="col-6">
+      <div class="row" formGroupName="address">
+        <h4>Owner Address</h4>
+        <div class="mt-3">
+          <label class="form-label" for="street">Street</label>
+          <input type="text" formControlName="street" class="form-control" id="street">
+          <!-- <ng-container *ngIf="formGroup('address')?.get('street').pristine || formGroup('address')?.get('street').invalid">
+             <p class="text-danger">Street address required</p>
+           </ng-container>-->
+        </div>
+
+        <div class="mt-3">
+          <label class="form-label" for="city">City</label>
+          <input type="text" formControlName="city" class="form-control" id="city">
+          <!--<ng-container *ngIf="formGroup('address')?.get('city').pristine || formGroup('address')?.get('city').invalid">
+            <p class="text-danger">City required</p>
+          </ng-container>-->
+        </div>
+
+        <div class="mt-3">
+          <label class="form-label" for="state">State</label>
+          <input type="text" formControlName="state" class="form-control" id="state">
+        </div>
+
+        <div class="mt-3">
+          <label class="form-label" for="zip">Zip</label>
+          <input type="text" formControlName="zip" class="form-control" id="zip">
+          <!--<ng-container *ngIf="formGroup('address')?.get('zip')?.pristine || formGroup('address')?.get('zip')?.invalid">
+            <p class="text-danger">Zip required</p>
+          </ng-container>-->
+        </div>
+
+        <div class="mt-2 mb-5">
+          <ng-container *ngIf="parking">
+            <button class="btn btn-primary" [disabled]="parkingForm.invalid">Edit Parking</button>
+          </ng-container>
+          <ng-container *ngIf="!parking">
+            <button class="btn btn-primary" [disabled]="parkingForm.invalid">Add Parking</button>
+          </ng-container>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</form>

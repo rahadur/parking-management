@@ -31,4 +31,12 @@ export class ParkingService {
     const parking = parkings.find((p: Parking) => p.id === id);
     return of(parking);
   }
+
+  updateParking(parking: Parking): Observable<boolean> {
+    let parkings = this.storage.getItem('parkings');
+    parkings = parkings.filter((p: Parking) => p.id !== parking.id);
+    parkings.push({...parking});
+    this.storage.setItem('parkings', parkings);
+    return of(true);
+  }
 }

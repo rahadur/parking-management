@@ -61,7 +61,6 @@ export class AddComponent implements OnInit {
   }
 
   saveParking(parking: Parking): void {
-    console.log(parking)
     if (parking) {
       this.parkingService.saveParking(parking).subscribe(save => {
         this.router.navigateByUrl('/admin/parking')

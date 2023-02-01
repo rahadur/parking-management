@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import {ActivatedRoute} from "@angular/router";
+import {ActivatedRoute, Router} from "@angular/router";
 import {ParkingService} from "@core/services/parking.service";
 import {Observable} from "rxjs";
 import {Parking} from "@core/models/parking";
@@ -15,6 +15,7 @@ export class EditComponent implements OnInit {
 
   constructor(
     private route: ActivatedRoute,
+    private router: Router,
     private parkingService: ParkingService
   ) { }
 
@@ -25,7 +26,11 @@ export class EditComponent implements OnInit {
 
 
   saveParking(parking: Parking): void {
-    console.log(parking)
+    if (parking) {
+      this.parkingService.updateParking(parking).subscribe(save => {
+        this.router.navigateByUrl('/admin/parking')
+      })
+    }
   }
 
 }

@@ -20,6 +20,7 @@ export class ParkingFormComponent implements OnInit, AfterViewInit {
 
   ngOnInit(): void {
     this.parkingForm = this.fb.group({
+      id: [''],
       vehicleLicenseNo: ['', [Validators.required]],
       vehicleType: ['', [Validators.required]],
       ownerName: ['', [Validators.required]],
@@ -40,6 +41,7 @@ export class ParkingFormComponent implements OnInit, AfterViewInit {
   ngAfterViewInit() {
     if(this.parking) {
       this.parkingForm.patchValue({
+        id: this.parking.id,
         vehicleLicenseNo: this.parking.vehicleLicenseNo,
         vehicleType: this.parking.vehicleType,
         ownerName: this.parking.ownerName,
